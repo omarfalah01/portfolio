@@ -1,0 +1,43 @@
+import { useEffect, useRef, useState, type RefObject } from 'react'
+
+type Options = {
+  threshold?: number
+  rootMargin?: string
+  once?: boolean
+}
+
+export function useInView<T extends HTMLElement = HTMLDivElement>(
+  options: Options = {},
+): [RefObject<T | null>, boolean] {
+  const { threshold = 0.15, rootMargin = '0px 0px -8% 0px', once = true } =
+    options
+  const ref = useRef<T | null>(null)
+  const [isInView, setIsInView] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setIsInView(true)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          if (once) observer.unobserve(el)
+        } else if (!once) {
+          setIsInView(false)
+        }
+      },
+      { threshold, rootMargin },
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [threshold, rootMargin, once])
+
+  return [ref, isInView]
+}

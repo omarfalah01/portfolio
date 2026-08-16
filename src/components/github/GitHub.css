@@ -1,0 +1,57 @@
+.gh {
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.gh__status,
+.gh__error {
+  color: var(--text-muted);
+}
+
+.gh__error {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+.gh__profile-link {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.gh__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+  align-items: center;
+}
+
+.gh__identity {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.gh__identity img {
+  border-radius: 50%;
+  border: 1px solid var(--border);
+}
+
+.gh__stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.gh__stat strong {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+}
+
+.gh__stat span {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}

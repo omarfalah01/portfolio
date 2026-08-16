@@ -1,0 +1,137 @@
+.case {
+  padding-bottom: 5rem;
+}
+
+.case__hero {
+  padding: calc(var(--nav-h) + 2.5rem) 0 3rem;
+  background:
+    radial-gradient(ellipse at 20% 0%, color-mix(in srgb, var(--project-accent) 22%, transparent), transparent 50%),
+    var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+}
+
+.case__back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.case__back:hover {
+  color: var(--accent);
+}
+
+.case__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.case__hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+  max-width: 18ch;
+}
+
+.case__lead {
+  font-size: 1.1rem;
+  max-width: 40rem;
+  margin-bottom: 1.25rem;
+}
+
+.case__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.case__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.case__links a {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.case__private {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.case__content {
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  max-width: 720px;
+}
+
+.case__content h2 {
+  font-size: 1.35rem;
+  margin-bottom: 0.65rem;
+}
+
+.case__content p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.case__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.case__list li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.case__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.case__placeholder {
+  font-size: 0.95rem;
+}
+
+.case__placeholder code {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.case__shots {
+  display: grid;
+  gap: 1rem;
+}
+
+.case__shots img {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.case.container {
+  padding-top: calc(var(--nav-h) + 3rem);
+}
