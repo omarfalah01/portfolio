@@ -1,142 +1,295 @@
 .nav {
   position: fixed;
-  inset-inline: 0;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  height: var(--nav-h);
-  transition:
-    background var(--dur) var(--ease-soft),
-    border-color var(--dur) var(--ease-soft),
-    backdrop-filter var(--dur) var(--ease-soft);
   border-bottom: 1px solid transparent;
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    backdrop-filter var(--dur-fast) var(--ease-soft);
 }
 
-.nav--scrolled {
-  background: var(--glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom-color: var(--glass-border);
+.nav--solid {
+  background: rgba(5, 7, 11, 0.72);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border-bottom-color: var(--line);
 }
 
 .nav__inner {
-  height: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1.5rem;
+  height: var(--nav-h);
 }
+
+/* ---------- Brand ---------- */
 
 .nav__brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: -0.03em;
-  z-index: 2;
+  gap: 0.7rem;
+  flex-shrink: 0;
 }
 
 .nav__mark {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 16px var(--accent-glow);
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--accent-bright);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: 9px;
+  transition: background-color var(--dur-fast) var(--ease-soft);
 }
 
+.nav__brand:hover .nav__mark {
+  background: rgba(77, 124, 255, 0.2);
+}
+
+.nav__brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.nav__name {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+
+.nav__role {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-3);
+}
+
+/* ---------- Desktop links ---------- */
+
 .nav__desktop {
-  margin-left: auto;
+  display: none;
 }
 
 .nav__list {
   display: flex;
+  align-items: center;
   gap: 0.15rem;
+  padding: 0.25rem;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.015);
 }
 
 .nav__link {
   display: block;
-  padding: 0.45rem 0.7rem;
+  padding: 0.45rem 0.9rem;
   font-size: 0.875rem;
-  color: var(--text-muted);
-  border-radius: 999px;
+  font-weight: 500;
+  color: var(--text-2);
+  border-radius: 100px;
   transition:
     color var(--dur-fast) var(--ease-soft),
-    background var(--dur-fast) var(--ease-soft);
+    background-color var(--dur-fast) var(--ease-soft);
 }
 
-.nav__link:hover,
-.nav__link.is-active {
+.nav__link:hover {
   color: var(--text);
 }
 
 .nav__link.is-active {
-  background: var(--accent-muted);
-  color: var(--accent);
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+/* ---------- End actions ---------- */
+
+.nav__end {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.nav__cta {
+  display: none;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+  border: 1px solid var(--line-strong);
+  border-radius: 100px;
+  transition:
+    border-color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft);
+}
+
+.nav__cta:hover {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
 }
 
 .nav__toggle {
-  display: none;
-  width: 44px;
-  height: 44px;
-  margin-left: auto;
-  position: relative;
-  z-index: 2;
-  border-radius: var(--radius-sm);
+  display: grid;
+  place-content: center;
+  gap: 6px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
 }
 
 .nav__toggle span {
   display: block;
-  width: 20px;
-  height: 2px;
-  margin: 5px auto;
+  width: 17px;
+  height: 1.5px;
   background: var(--text);
-  transition: transform var(--dur-fast) var(--ease-soft), opacity var(--dur-fast);
+  border-radius: 2px;
+  transition: transform var(--dur-fast) var(--ease-out);
 }
 
-.nav__toggle.is-open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+.nav__toggle.is-open span:first-child {
+  transform: translateY(3.75px) rotate(45deg);
 }
 
-.nav__toggle.is-open span:nth-child(2) {
-  opacity: 0;
+.nav__toggle.is-open span:last-child {
+  transform: translateY(-3.75px) rotate(-45deg);
 }
 
-.nav__toggle.is-open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
+/* ---------- Mobile panel ---------- */
 
 .nav__mobile {
   position: fixed;
-  inset: 0;
-  background: rgba(6, 8, 12, 0.96);
-  padding: calc(var(--nav-h) + 1.5rem) 1.5rem 2rem;
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity var(--dur) var(--ease-soft),
-    visibility var(--dur) var(--ease-soft);
+  inset: var(--nav-h) 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.5rem, 6vw, 2.5rem) var(--gutter) 2.5rem;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
-.nav__mobile.is-open {
-  opacity: 1;
-  visibility: visible;
+/* A class rule beats the UA [hidden] style, so restate it explicitly —
+   without this the closed panel stays visible and covers the page. */
+.nav__mobile[hidden] {
+  display: none;
+}
+
+.nav__mobile ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__mobile li {
+  border-bottom: 1px solid var(--line);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: nav-item-in 0.4s var(--ease-out) forwards;
+  animation-delay: calc(var(--i) * 45ms);
 }
 
 .nav__mobile a {
-  display: block;
-  padding: 1rem 0;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.05rem 0;
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: clamp(1.5rem, 7vw, 2rem);
   font-weight: 600;
-  border-bottom: 1px solid var(--border);
+  letter-spacing: -0.025em;
+  color: var(--text-2);
+  transition: color var(--dur-fast) var(--ease-soft);
 }
 
-@media (max-width: 900px) {
+.nav__mobile a:hover,
+.nav__mobile a.is-active {
+  color: var(--text);
+}
+
+.nav__mobile-index {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-3);
+}
+
+.nav__mobile a.is-active .nav__mobile-index {
+  color: var(--accent);
+}
+
+.nav__mobile-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  font-size: 0.875rem;
+  color: var(--text-2);
+}
+
+.nav__mobile-foot a {
+  color: var(--text-2);
+}
+
+.nav__mobile-foot a:hover {
+  color: var(--accent-bright);
+}
+
+.nav__mobile-social {
+  display: flex;
+  gap: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+@keyframes nav-item-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__mobile li {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* ---------- Breakpoints ---------- */
+
+@media (min-width: 900px) {
   .nav__desktop {
-    display: none;
+    display: block;
+  }
+
+  .nav__cta {
+    display: inline-block;
   }
 
   .nav__toggle {
-    display: block;
+    display: none;
+  }
+
+  .nav__mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav__role {
+    display: none;
   }
 }

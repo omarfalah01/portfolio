@@ -1,21 +1,24 @@
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.35rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
+  padding: 0.3rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   font-weight: 500;
-  color: var(--text);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
+  letter-spacing: 0.01em;
+  color: var(--text-2);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  white-space: nowrap;
   transition:
+    color var(--dur-fast) var(--ease-soft),
     border-color var(--dur-fast) var(--ease-soft),
-    background var(--dur-fast) var(--ease-soft),
-    color var(--dur-fast) var(--ease-soft);
+    background-color var(--dur-fast) var(--ease-soft);
 }
 
-.badge:hover {
-  border-color: rgba(61, 206, 167, 0.35);
-  background: var(--accent-muted);
-  color: var(--accent);
+.badge--accent {
+  color: var(--accent-bright);
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
 }

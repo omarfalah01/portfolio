@@ -1,0 +1,102 @@
+.certs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  max-width: 880px;
+}
+
+.cert {
+  position: relative;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(ellipse 80% 60% at 0% 0%, var(--accent-soft), transparent 60%),
+    linear-gradient(180deg, var(--surface), rgba(11, 15, 22, 0.4));
+  transition: border-color var(--dur-fast) var(--ease-soft);
+}
+
+.cert:hover {
+  border-color: var(--accent-line);
+}
+
+.cert__head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.cert__badge {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: 12px;
+}
+
+.cert__name {
+  font-size: 1.25rem;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.cert__issuer {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-3);
+  margin-top: 0.15rem;
+}
+
+.cert__verified {
+  margin-left: auto;
+  align-self: flex-start;
+  padding: 0.25rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mint);
+  border: 1px solid color-mix(in srgb, var(--mint) 35%, transparent);
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.cert__desc {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.cert__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.cert__topics li {
+  padding: 0.28rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-2);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.cert__link {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent-bright);
+  border-bottom: 1px solid var(--accent-line);
+}
+
+.cert__link:hover {
+  border-bottom-color: var(--accent-bright);
+}

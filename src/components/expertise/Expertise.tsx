@@ -5,81 +5,92 @@ import './Expertise.css'
 
 function Icon({ type }: { type: ExpertiseArea['icon'] }) {
   const common = {
-    width: 24,
-    height: 24,
+    width: 22,
+    height: 22,
     viewBox: '0 0 24 24',
     fill: 'none',
     stroke: 'currentColor',
-    strokeWidth: 1.6,
+    strokeWidth: 1.5,
     strokeLinecap: 'round' as const,
     strokeLinejoin: 'round' as const,
+    'aria-hidden': true,
   }
 
   switch (type) {
     case 'stack':
       return (
         <svg {...common}>
-          <path d="M12 2 3 7l9 5 9-5-9-5Z" />
-          <path d="m3 12 9 5 9-5" />
-          <path d="m3 17 9 5 9-5" />
+          <path d="M12 3 3 7.5l9 4.5 9-4.5L12 3Z" />
+          <path d="m3 12 9 4.5L21 12" />
+          <path d="m3 16.5 9 4.5 9-4.5" />
         </svg>
       )
     case 'mobile':
       return (
         <svg {...common}>
-          <rect x="7" y="2" width="10" height="20" rx="2" />
-          <path d="M11 18h2" />
+          <rect x="6.5" y="2.5" width="11" height="19" rx="2.5" />
+          <path d="M10.5 18.5h3" />
+          <path d="M9 6h6" />
         </svg>
       )
-    case 'backend':
+    case 'systems':
       return (
         <svg {...common}>
-          <rect x="3" y="4" width="18" height="6" rx="1.5" />
-          <rect x="3" y="14" width="18" height="6" rx="1.5" />
-          <circle cx="7" cy="7" r="1" fill="currentColor" stroke="none" />
-          <circle cx="7" cy="17" r="1" fill="currentColor" stroke="none" />
+          <rect x="9.5" y="2.5" width="5" height="5" rx="1.2" />
+          <rect x="3" y="16.5" width="5" height="5" rx="1.2" />
+          <rect x="16" y="16.5" width="5" height="5" rx="1.2" />
+          <path d="M12 7.5v4.5M5.5 16.5V13h13v3.5" />
         </svg>
       )
     case 'database':
       return (
         <svg {...common}>
-          <ellipse cx="12" cy="5" rx="8" ry="3" />
-          <path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5" />
-          <path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" />
+          <ellipse cx="12" cy="5.5" rx="7.5" ry="3" />
+          <path d="M4.5 5.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6" />
+          <path d="M4.5 11.5v7c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-7" />
         </svg>
       )
-    case 'desktop':
+    case 'api':
       return (
         <svg {...common}>
-          <rect x="3" y="4" width="18" height="12" rx="1.5" />
-          <path d="M8 20h8M12 16v4" />
+          <path d="M8.5 6 3.5 12l5 6" />
+          <path d="m15.5 6 5 6-5 6" />
+          <path d="M13.5 4.5 10.5 19.5" />
         </svg>
       )
-    case 'network':
+    case 'automation':
       return (
         <svg {...common}>
-          <circle cx="12" cy="5" r="2.2" />
-          <circle cx="5" cy="18" r="2.2" />
-          <circle cx="19" cy="18" r="2.2" />
-          <path d="M12 7.2v4.5M12 11.7 6.2 16.2M12 11.7l5.8 4.5" />
+          <path d="M3 7h8" />
+          <path d="M3 17h5" />
+          <circle cx="14" cy="7" r="2.5" />
+          <circle cx="11" cy="17" r="2.5" />
+          <path d="M16.5 7H21" />
+          <path d="M13.5 17H21" />
         </svg>
       )
   }
 }
 
-function Card({ area, delay }: { area: ExpertiseArea; delay: number }) {
-  const reveal = useReveal(delay)
+function Card({ area, index, delay }: { area: ExpertiseArea; index: number; delay: number }) {
+  const reveal = useReveal<HTMLElement>(delay)
+
   return (
     <article
       ref={reveal.ref}
-      className={`expertise-card ${reveal.className}`}
+      className={`ex-card ${reveal.className}`}
       style={reveal.style}
     >
-      <div className="expertise-card__icon" aria-hidden="true">
-        <Icon type={area.icon} />
+      <div className="ex-card__top">
+        <span className="ex-card__icon">
+          <Icon type={area.icon} />
+        </span>
+        <span className="ex-card__index" aria-hidden="true">
+          {String(index + 1).padStart(2, '0')}
+        </span>
       </div>
-      <h3>{area.title}</h3>
-      <p>{area.description}</p>
+      <h3 className="ex-card__title">{area.title}</h3>
+      <p className="ex-card__desc">{area.description}</p>
     </article>
   )
 }
@@ -88,14 +99,15 @@ export function Expertise() {
   return (
     <Section
       id="expertise"
+      index="02"
       eyebrow="What I Build"
-      title="What I build"
-      lead="Across web, mobile, backend, data, and desktop."
+      title="Systems, not just websites"
+      lead="Six kinds of work that make up most of what I deliver — from the mobile client down to the schema underneath it."
       wide
     >
-      <div className="expertise-grid">
+      <div className="ex-grid">
         {expertiseAreas.map((area, i) => (
-          <Card key={area.id} area={area} delay={i * 70} />
+          <Card key={area.id} area={area} index={i} delay={i * 60} />
         ))}
       </div>
     </Section>

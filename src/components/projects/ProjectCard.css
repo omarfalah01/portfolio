@@ -1,185 +1,148 @@
-.project-card {
-  display: grid;
-  grid-template-rows: auto 1fr;
+.pcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--surface), rgba(11, 15, 22, 0.4));
   overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--border);
   transition:
-    border-color var(--dur) var(--ease-soft),
-    transform var(--dur) var(--ease-soft),
-    box-shadow var(--dur) var(--ease-soft);
-  height: 100%;
+    border-color var(--dur-fast) var(--ease-soft),
+    transform var(--dur) var(--ease-out);
 }
 
-.project-card:hover {
+.pcard:hover {
+  border-color: color-mix(in srgb, var(--project-accent) 35%, transparent);
+  transform: translateY(-4px);
+}
+
+.pcard:focus-within {
   border-color: color-mix(in srgb, var(--project-accent) 45%, transparent);
-  transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
-.project-card__preview {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  background:
-    radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--project-accent) 28%, transparent), transparent 55%),
-    linear-gradient(145deg, var(--surface-2), var(--bg-elevated));
-  border-bottom: 1px solid var(--border);
-  overflow: hidden;
+.pcard__media {
+  padding: clamp(1rem, 2.5vw, 1.4rem) clamp(1rem, 2.5vw, 1.4rem) 0;
 }
 
-.project-card__preview-inner {
-  position: absolute;
-  inset: 12%;
-  border-radius: 10px;
-  background: rgba(6, 8, 12, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 1rem;
+.pcard__media img {
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  object-fit: cover;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+}
+
+.pcard__media .pv {
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.pcard:hover .pcard__media .pv {
+  transform: scale(1.015);
+}
+
+.pcard__body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  flex: 1;
+  padding: clamp(1.25rem, 3vw, 1.6rem);
 }
 
-.project-card__preview-label {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: var(--project-accent);
-}
-
-.project-card__bars {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
-.project-card__bars span {
-  height: 6px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.project-card__bars span:nth-child(1) {
-  width: 78%;
-  background: color-mix(in srgb, var(--project-accent) 45%, transparent);
-}
-
-.project-card__bars span:nth-child(2) {
-  width: 92%;
-}
-
-.project-card__bars span:nth-child(3) {
-  width: 55%;
-}
-
-.project-card__status {
-  position: absolute;
-  top: 0.85rem;
-  right: 0.85rem;
-  padding: 0.3rem 0.65rem;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+.pcard__category {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  border-radius: 999px;
-  background: rgba(6, 8, 12, 0.75);
-  border: 1px solid var(--border-strong);
-  color: var(--text-muted);
+  color: var(--project-accent, var(--accent));
+  margin-bottom: 0.75rem;
 }
 
-.project-card__body {
-  padding: 1.4rem 1.35rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
+.pcard__title {
+  font-size: var(--step-h3);
+  margin-bottom: 0.6rem;
 }
 
-.project-card__title {
-  font-size: 1.25rem;
+.pcard__title a {
+  color: var(--text);
+  transition: color var(--dur-fast) var(--ease-soft);
 }
 
-.project-card__title a:hover {
-  color: var(--accent);
+.pcard:hover .pcard__title a {
+  color: var(--project-accent, var(--accent));
 }
 
-.project-card__desc {
-  font-size: 0.95rem;
-}
-
-.project-card__tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.project-card__features {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  margin-top: 0.25rem;
-}
-
-.project-card__features li {
-  position: relative;
-  padding-left: 0.95rem;
-  font-size: 0.88rem;
-  color: var(--text-muted);
-}
-
-.project-card__features li::before {
-  content: '';
+/* Stretched link — makes the whole card activatable from one accessible name */
+.pcard__cover {
   position: absolute;
-  left: 0;
-  top: 0.5rem;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--project-accent);
+  inset: 0;
 }
 
-.project-card__actions {
+.pcard__desc {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin-bottom: 1.15rem;
+}
+
+.pcard__tech {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 0.65rem;
-  margin-top: auto;
-  padding-top: 0.5rem;
+  gap: 0.35rem;
+  margin-bottom: 1.4rem;
 }
 
-.project-card__btn {
+.pcard__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+}
+
+.pcard__link {
   display: inline-flex;
   align-items: center;
-  padding: 0.5rem 0.95rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
+  gap: 0.45rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  border: 1px solid var(--border-strong);
   color: var(--text);
-  transition:
-    border-color var(--dur-fast),
-    background var(--dur-fast),
-    color var(--dur-fast);
 }
 
-.project-card__btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+.pcard__link svg {
+  transition: transform var(--dur-fast) var(--ease-out);
 }
 
-.project-card__btn--primary {
-  background: var(--accent-muted);
-  border-color: rgba(61, 206, 167, 0.35);
-  color: var(--accent);
+.pcard:hover .pcard__link svg {
+  transform: translateX(3px);
 }
 
-.project-card__private {
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  font-weight: 500;
+.pcard__status,
+.pcard__code {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.pcard__code {
+  position: relative;
+  z-index: 1;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.pcard__code:hover {
+  color: var(--text);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-card:hover {
+  .pcard:hover {
+    transform: none;
+  }
+
+  .pcard:hover .pcard__media .pv,
+  .pcard:hover .pcard__link svg {
     transform: none;
   }
 }

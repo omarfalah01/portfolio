@@ -16,12 +16,17 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://your-domain.com/projects/vehicle-management</loc>
+    <loc>https://your-domain.com/projects/hrms</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://your-domain.com/projects/hr-personnel</loc>
+    <loc>https://your-domain.com/projects/pos-inventory</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://your-domain.com/projects/vehicle-management</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

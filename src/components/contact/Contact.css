@@ -1,0 +1,219 @@
+.contact {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, 700px);
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent-line), transparent);
+}
+
+.contact__head {
+  max-width: 46rem;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.contact__title {
+  font-size: var(--step-h2);
+  color: var(--text);
+  margin-bottom: 1.1rem;
+}
+
+.contact__lead {
+  font-size: var(--step-lead);
+  max-width: 44ch;
+  margin-bottom: clamp(1.75rem, 4vw, 2.25rem);
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+}
+
+.contact__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.9rem 1.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #fff;
+  background: var(--accent);
+  border-radius: 100px;
+  box-shadow: 0 10px 34px -14px var(--accent-glow);
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    transform var(--dur-fast) var(--ease-soft);
+  word-break: break-all;
+}
+
+.contact__cta:hover {
+  background: var(--accent-bright);
+  transform: translateY(-1px);
+}
+
+.contact__cta svg {
+  flex-shrink: 0;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.contact__cta:hover svg {
+  transform: translateX(3px);
+}
+
+.contact__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-2);
+}
+
+.contact__pulse {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mint);
+  flex-shrink: 0;
+}
+
+.contact__pulse::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--mint);
+  opacity: 0;
+  animation: contact-ping 2.4s var(--ease-out) infinite;
+}
+
+/* ---------- Methods ---------- */
+
+.contact__methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.contact__method {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  height: 100%;
+  padding: 1.25rem;
+  background: var(--bg-soft);
+  transition: background-color var(--dur-fast) var(--ease-soft);
+}
+
+.contact__method:hover {
+  background: var(--surface);
+}
+
+.contact__method-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  color: var(--text-2);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft);
+}
+
+.contact__method:hover .contact__method-icon {
+  color: var(--accent-bright);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+
+.contact__method-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.contact__method-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.contact__method-value {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.contact__method-arrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--text-3);
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition:
+    opacity var(--dur-fast) var(--ease-soft),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.contact__method:hover .contact__method-arrow,
+.contact__method:focus-visible .contact__method-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+.contact__location {
+  margin-top: 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-3);
+}
+
+@keyframes contact-ping {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.7);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__pulse::after {
+    animation: none;
+  }
+
+  .contact__cta:hover,
+  .contact__cta:hover svg {
+    transform: none;
+  }
+
+  .contact__method-arrow {
+    opacity: 1;
+    transform: none;
+  }
+}

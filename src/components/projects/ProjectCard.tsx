@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { Project } from '../../data/portfolio'
 import { Badge } from '../ui/Badge'
+import { ProjectVisual } from './ProjectVisual'
 import { useReveal } from '../../hooks/useReveal'
 import './ProjectCard.css'
 
@@ -9,74 +10,79 @@ type Props = {
   delay?: number
 }
 
+/** Compact card used for supporting projects below the featured rows. */
 export function ProjectCard({ project, delay = 0 }: Props) {
-  const reveal = useReveal(delay)
+  const reveal = useReveal<HTMLElement>(delay)
+  const codeLink = project.links.find((l) => l.type === 'github' && l.href)
 
   return (
     <article
       ref={reveal.ref}
-      className={`project-card ${reveal.className}`}
+      className={`pcard ${reveal.className}`}
       style={{ ...reveal.style, ['--project-accent' as string]: project.accent }}
     >
-      <div className="project-card__preview" aria-hidden="true">
-        <div className="project-card__preview-inner">
-          <span className="project-card__preview-label">{project.name.split(' ')[0]}</span>
-          <div className="project-card__bars">
-            <span />
-            <span />
-            <span />
-          </div>
-        </div>
-        {project.status === 'private' ? (
-          <span className="project-card__status">Private / Internal</span>
-        ) : null}
+      <div className="pcard__media">
+        {project.image ? (
+          <img
+            src={project.image.src}
+            alt={project.image.alt}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <ProjectVisual kind={project.visual} accent={project.accent} />
+        )}
       </div>
 
-      <div className="project-card__body">
-        <h3 className="project-card__title">
-          <Link to={`/projects/${project.id}`}>{project.name}</Link>
-        </h3>
-        <p className="project-card__desc">{project.shortDescription}</p>
+      <div className="pcard__body">
+        <p className="pcard__category">{project.category}</p>
 
-        <ul className="project-card__tech">
-          {project.technologies.map((t) => (
-            <li key={t}>
-              <Badge>{t}</Badge>
+        <h3 className="pcard__title">
+          <Link to={`/projects/${project.id}`}>
+            {project.name}
+            <span className="pcard__cover" aria-hidden="true" />
+          </Link>
+        </h3>
+
+        <p className="pcard__desc">{project.shortDescription}</p>
+
+        <ul className="pcard__tech" aria-label={`${project.name} technologies`}>
+          {project.technologies.slice(0, 5).map((tech) => (
+            <li key={tech}>
+              <Badge>{tech}</Badge>
             </li>
           ))}
         </ul>
 
-        <ul className="project-card__features">
-          {project.features.slice(0, 4).map((f) => (
-            <li key={f}>{f}</li>
-          ))}
-        </ul>
-
-        <div className="project-card__actions">
-          <Link className="project-card__btn project-card__btn--primary" to={`/projects/${project.id}`}>
-            Case Study
-          </Link>
-          {project.links.map((link) => {
-            if (link.type === 'case') return null
-            if (link.type === 'private' || !link.href) {
-              return (
-                <span key={link.label} className="project-card__private">
-                  {link.label}
-                </span>
-              )
-            }
-            return (
-              <a
-                key={link.label}
-                className="project-card__btn"
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.label}
-              </a>
-            )
-          })}
+        <div className="pcard__foot">
+          <span className="pcard__link">
+            View Project
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.7"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </span>
+          {codeLink ? (
+            <a
+              className="pcard__code"
+              href={codeLink.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Code
+            </a>
+          ) : (
+            <span className="pcard__status">Private</span>
+          )}
         </div>
       </div>
     </article>

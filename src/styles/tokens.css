@@ -1,55 +1,85 @@
+/**
+ * Design tokens — single source of truth for surfaces, type, motion.
+ * Dark, near-black canvas with one electric-blue accent.
+ */
 :root {
-  /* Surfaces — deep charcoal with cool undertone */
-  --bg: #06080c;
-  --bg-elevated: #0a0e14;
-  --surface: #0f141c;
-  --surface-2: #151b26;
-  --surface-hover: #1a2230;
+  color-scheme: dark;
 
-  /* Borders & overlays */
-  --border: rgba(232, 236, 244, 0.08);
-  --border-strong: rgba(232, 236, 244, 0.14);
-  --glass: rgba(15, 20, 28, 0.72);
-  --glass-border: rgba(232, 236, 244, 0.1);
+  /* Surfaces */
+  --bg: #05070b;
+  --bg-soft: #080b11;
+  --surface: #0b0f16;
+  --surface-2: #10151e;
+  --surface-3: #161c28;
+
+  /* Hairlines */
+  --line: rgba(226, 232, 245, 0.07);
+  --line-strong: rgba(226, 232, 245, 0.14);
 
   /* Text */
-  --text: #e8ecf4;
-  --text-muted: #8b95a8;
-  --text-dim: #5c6578;
+  --text: #edf1f8;
+  --text-2: #9fa9bd;
+  --text-3: #667186;
 
-  /* Accent — teal (not purple) */
-  --accent: #3dcea7;
-  --accent-hover: #52dbb6;
-  --accent-muted: rgba(61, 206, 167, 0.14);
-  --accent-glow: rgba(61, 206, 167, 0.22);
-  --accent-2: #6b9eff;
-  --accent-warn: #e8b84a;
+  /* Accent — electric blue */
+  --accent: #4d7cff;
+  --accent-bright: #7396ff;
+  --accent-soft: rgba(77, 124, 255, 0.12);
+  --accent-line: rgba(77, 124, 255, 0.34);
+  --accent-glow: rgba(77, 124, 255, 0.22);
+  --accent-ink: #030713;
+
+  /* Support hues — used sparingly for project identity only */
+  --cyan: #38bdf8;
+  --amber: #e3b341;
+  --mint: #34d399;
 
   /* Typography */
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'Manrope', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Space Grotesk', 'Manrope', system-ui, sans-serif;
+  --font-body: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
 
-  /* Spacing */
-  --section-pad: clamp(4.5rem, 10vw, 7.5rem);
-  --container: 1120px;
-  --container-wide: 1240px;
-  --radius: 12px;
-  --radius-lg: 20px;
+  --step-eyebrow: 0.75rem;
+  --step-body: 1rem;
+  --step-lead: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  --step-h3: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --step-h2: clamp(1.9rem, 1.4rem + 2.2vw, 3rem);
+  --step-h1: clamp(2.4rem, 1.4rem + 4.4vw, 4.5rem);
+
+  /* Layout */
+  --container: 1140px;
+  --container-wide: 1280px;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --section-pad: clamp(4.5rem, 9vw, 8rem);
+  --nav-h: 68px;
+
   --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
 
   /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
-  --dur: 0.45s;
+  --dur: 0.55s;
   --dur-fast: 0.2s;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.35);
-  --nav-h: 72px;
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 18px 50px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 40px 90px rgba(0, 0, 0, 0.55);
 
-  color-scheme: dark;
+  /* Back-compat aliases (older component CSS reads these) */
+  --bg-elevated: var(--bg-soft);
+  --surface-hover: var(--surface-3);
+  --border: var(--line);
+  --border-strong: var(--line-strong);
+  --text-muted: var(--text-2);
+  --text-dim: var(--text-3);
+  --accent-hover: var(--accent-bright);
+  --accent-muted: var(--accent-soft);
+  --accent-2: var(--cyan);
+  --glass: rgba(11, 15, 22, 0.72);
+  --glass-border: var(--line-strong);
 }
 
 @media (prefers-reduced-motion: reduce) {

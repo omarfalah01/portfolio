@@ -1,35 +1,29 @@
-import { skillCategories } from '../../data/portfolio'
+import { skillCategories, type SkillCategory } from '../../data/portfolio'
 import { Section } from '../ui/Section'
-import { Badge } from '../ui/Badge'
 import { useReveal } from '../../hooks/useReveal'
 import './Skills.css'
 
-function SkillGroup({
-  label,
-  skills,
-  delay,
-}: {
-  label: string
-  skills: string[]
-  delay: number
-}) {
-  const reveal = useReveal(delay)
+function SkillRow({ category, index, delay }: { category: SkillCategory; index: number; delay: number }) {
+  const reveal = useReveal<HTMLDivElement>(delay)
 
   return (
-    <article
-      ref={reveal.ref}
-      className={`skill-group ${reveal.className}`}
-      style={reveal.style}
-    >
-      <h3 className="skill-group__title">{label}</h3>
-      <ul className="skill-group__list">
-        {skills.map((skill) => (
-          <li key={skill}>
-            <Badge>{skill}</Badge>
+    <div ref={reveal.ref} className={`skill-row ${reveal.className}`} style={reveal.style}>
+      <div className="skill-row__head">
+        <span className="skill-row__index" aria-hidden="true">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <h3 className="skill-row__label">{category.label}</h3>
+        <p className="skill-row__caption">{category.caption}</p>
+      </div>
+
+      <ul className="skill-row__items">
+        {category.skills.map((skill) => (
+          <li key={skill} className="skill-chip">
+            {skill}
           </li>
         ))}
       </ul>
-    </article>
+    </div>
   )
 }
 
@@ -37,19 +31,15 @@ export function Skills() {
   return (
     <Section
       id="skills"
-      eyebrow="Skills"
-      title="Technologies I use"
-      lead="Grouped by layer—no vanity percentage bars."
+      index="04"
+      eyebrow="Tech Stack"
+      title="What I work with"
+      lead="Tools I use in real projects — not a list of everything I have read about."
       wide
     >
-      <div className="skills-grid">
-        {skillCategories.map((cat, i) => (
-          <SkillGroup
-            key={cat.id}
-            label={cat.label}
-            skills={cat.skills}
-            delay={i * 60}
-          />
+      <div className="skills">
+        {skillCategories.map((category, i) => (
+          <SkillRow key={category.id} category={category} index={i} delay={i * 50} />
         ))}
       </div>
     </Section>
