@@ -7,11 +7,12 @@ import './ProjectCard.css'
 
 type Props = {
   project: Project
+  index: number
   delay?: number
 }
 
 /** Compact card used for supporting projects below the featured rows. */
-export function ProjectCard({ project, delay = 0 }: Props) {
+export function ProjectCard({ project, index, delay = 0 }: Props) {
   const reveal = useReveal<HTMLElement>(delay)
   const codeLink = project.links.find((l) => l.type === 'github' && l.href)
 
@@ -22,6 +23,9 @@ export function ProjectCard({ project, delay = 0 }: Props) {
       style={{ ...reveal.style, ['--project-accent' as string]: project.accent }}
     >
       <div className="pcard__media">
+        <span className="pcard__badge" aria-hidden="true">
+          {String(index + 1).padStart(2, '0')}
+        </span>
         {project.image ? (
           <img
             src={project.image.src}

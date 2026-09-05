@@ -3,7 +3,7 @@ import { useReveal } from '../../hooks/useReveal'
 
 type Props = {
   id: string
-  /** Mono index shown before the eyebrow, e.g. "01". */
+  /** Mono index shown as [01] before the eyebrow, and as a ghost numeral behind the section. */
   index?: string
   eyebrow?: string
   title: string
@@ -32,7 +32,13 @@ export function Section({
       className={`section ${className}`.trim()}
       aria-labelledby={`${id}-title`}
     >
-      <div className={wide ? 'container--wide' : 'container'}>
+      <div className={`section__inner ${wide ? 'container--wide' : 'container'}`}>
+        {index ? (
+          <span className="section__ghost" aria-hidden="true">
+            {index}
+          </span>
+        ) : null}
+
         <header
           ref={reveal.ref}
           className={`section__head ${reveal.className}`}
@@ -40,8 +46,9 @@ export function Section({
         >
           {eyebrow ? (
             <p className="section__eyebrow">
-              {index ? <span className="section__index">{index}</span> : null}
-              <span>{eyebrow}</span>
+              {index ? <span className="section__index">[{index}]</span> : null}
+              <span className="section__rule" aria-hidden="true" />
+              <span className="section__label">{eyebrow}</span>
             </p>
           ) : null}
           <h2 id={`${id}-title`} className="section__title">

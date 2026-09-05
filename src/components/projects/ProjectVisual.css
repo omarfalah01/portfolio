@@ -1,8 +1,7 @@
 /* Generated project illustrations — schematic UI built from CSS primitives. */
 
 .pv {
-  --pv-ink: rgba(237, 241, 248, 0.13);
-  --pv-ink-soft: rgba(237, 241, 248, 0.07);
+  /* --pv-ink / --pv-ink-soft are themed in tokens.css and inherited here */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -24,7 +23,7 @@
   gap: 0.75rem;
   padding: 0.7rem 0.9rem;
   border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--tint);
   flex-shrink: 0;
 }
 
@@ -47,7 +46,7 @@
   color: var(--text-3);
   padding: 0.15rem 0.6rem;
   border-radius: 100px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--tint-strong);
 }
 
 .pv__screen {
@@ -80,7 +79,7 @@
 
 .pv-line--title {
   height: 9px;
-  background: rgba(237, 241, 248, 0.25);
+  background: var(--pv-ink);
 }
 
 .pv-line--label {
@@ -90,7 +89,7 @@
 
 .pv-line--price {
   width: 18%;
-  background: rgba(237, 241, 248, 0.2);
+  background: var(--pv-ink);
 }
 
 .pv-chip {
@@ -115,7 +114,7 @@
   display: block;
   height: 22px;
   border-radius: 7px;
-  background: rgba(255, 255, 255, 0.035);
+  background: var(--tint-strong);
   border: 1px solid var(--line);
   flex-shrink: 0;
 }
@@ -149,7 +148,7 @@
   padding: 0.5rem 0.55rem;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.015);
+  background: var(--tint);
 }
 
 .pv-row__lines {
@@ -224,7 +223,7 @@
   height: 100%;
   padding: 14px 8px 8px;
   border-radius: 12px;
-  background: rgba(5, 7, 11, 0.55);
+  background: var(--pv-screen);
   overflow: hidden;
 }
 
@@ -262,7 +261,7 @@
 
 .pv-cover {
   border-radius: 6px;
-  background: linear-gradient(150deg, rgba(237, 241, 248, 0.1), rgba(237, 241, 248, 0.03));
+  background: linear-gradient(150deg, var(--pv-ink), var(--pv-ink-soft));
   border: 1px solid var(--line);
 }
 
@@ -281,7 +280,7 @@
   gap: 7px;
   padding: 6px;
   border-radius: 9px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--tint-strong);
   border: 1px solid var(--line);
   flex-shrink: 0;
 }
@@ -377,7 +376,7 @@
   flex-shrink: 0;
   border-radius: 3px;
   border: 1px solid var(--line-strong);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--tint-strong);
 }
 
 .pv-doc::after {
@@ -405,7 +404,7 @@
   height: 13px;
   border-radius: 4px;
   border: 1px solid var(--line-strong);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--tint-strong);
 }
 
 .pv-node--root {
@@ -481,7 +480,7 @@
 .pv-tile {
   border-radius: 8px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--tint-strong);
 }
 
 .pv-tile--accent {
@@ -497,7 +496,7 @@
   padding: 0.7rem;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--tint);
 }
 
 .pv-cart-row {
@@ -524,7 +523,7 @@
 
 .pv-barcode i {
   height: 100%;
-  background: rgba(237, 241, 248, 0.28);
+  background: var(--pv-ink);
 }
 
 /* ---------- Fleet table ---------- */
@@ -544,7 +543,7 @@
   align-items: center;
   padding: 0.42rem 0.55rem;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.015);
+  background: var(--tint);
 }
 
 .pv-trow span {
@@ -583,14 +582,14 @@
   border-radius: 8px;
   border: 1px solid var(--line);
   background:
-    linear-gradient(to right, rgba(237, 241, 248, 0.03) 1px, transparent 1px) 0 0 / 25% 100%,
-    rgba(255, 255, 255, 0.015);
+    linear-gradient(to right, var(--pv-ink-soft) 1px, transparent 1px) 0 0 / 25% 100%,
+    var(--tint);
 }
 
 .pv-parcel {
   border-radius: 3px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.025);
+  background: var(--tint);
 }
 
 .pv-parcel--accent {
@@ -605,7 +604,7 @@
   padding: 0.45rem 0.5rem;
   border-radius: 7px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.015);
+  background: var(--tint);
 }
 
 /* ---------- Small containers ---------- */

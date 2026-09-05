@@ -4,7 +4,7 @@
   flex-direction: column;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, var(--surface), rgba(11, 15, 22, 0.4));
+  background: linear-gradient(180deg, var(--surface), var(--panel-fade));
   overflow: hidden;
   transition:
     border-color var(--dur-fast) var(--ease-soft),
@@ -21,7 +21,26 @@
 }
 
 .pcard__media {
+  position: relative;
   padding: clamp(1rem, 2.5vw, 1.4rem) clamp(1rem, 2.5vw, 1.4rem) 0;
+}
+
+.pcard__badge {
+  position: absolute;
+  top: clamp(1.6rem, 3vw, 2rem);
+  right: clamp(1.6rem, 3vw, 2rem);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--project-ink, var(--accent));
+  background: var(--scrim);
+  backdrop-filter: blur(6px);
+  border: 1px solid color-mix(in srgb, var(--project-accent) 35%, transparent);
+  border-radius: 50%;
 }
 
 .pcard__media img {
@@ -52,7 +71,7 @@
   font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--project-accent, var(--accent));
+  color: var(--project-ink, var(--accent));
   margin-bottom: 0.75rem;
 }
 
@@ -67,7 +86,7 @@
 }
 
 .pcard:hover .pcard__title a {
-  color: var(--project-accent, var(--accent));
+  color: var(--project-ink, var(--accent));
 }
 
 /* Stretched link — makes the whole card activatable from one accessible name */

@@ -26,6 +26,9 @@ export function FeaturedProject({ project, index }: Props) {
       data-flip={index % 2 === 1 ? 'true' : undefined}
     >
       <div className="fp__media">
+        <span className="fp__badge" aria-hidden="true">
+          {String(index + 1).padStart(2, '0')}
+        </span>
         <div ref={parallax} className="fp__media-inner">
           {project.image ? (
             <img
@@ -43,7 +46,7 @@ export function FeaturedProject({ project, index }: Props) {
 
       <div className="fp__body">
         <p className="fp__meta">
-          <span className="fp__index">{String(index + 1).padStart(2, '0')}</span>
+          {/* The number lives on the media badge — not repeated here */}
           <span className="fp__category">{project.category}</span>
         </p>
 

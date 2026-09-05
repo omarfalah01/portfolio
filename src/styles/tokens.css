@@ -1,38 +1,69 @@
 /**
- * Design tokens — single source of truth for surfaces, type, motion.
- * Dark, near-black canvas with one electric-blue accent.
+ * Design tokens — single source of truth for surfaces, type and motion.
+ *
+ * Light is the default theme; `data-theme="dark"` on <html> swaps the palette.
+ * Components should only ever reference these semantic names, never raw colours,
+ * so a theme switch needs no component changes.
  */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
   /* Surfaces */
-  --bg: #05070b;
-  --bg-soft: #080b11;
-  --surface: #0b0f16;
-  --surface-2: #10151e;
-  --surface-3: #161c28;
+  --bg: #eef0f4;
+  --bg-soft: #f4f5f8;
+  --surface: #ffffff;
+  --surface-2: #fbfcfd;
+  --surface-3: #f0f2f5;
+
+  /* A raised fill over the page ground (cards, chips, inputs) */
+  --tint: rgba(255, 255, 255, 0.72);
+  --tint-strong: #ffffff;
+  /* Translucent overlay for badges sitting on artwork */
+  --scrim: rgba(255, 255, 255, 0.82);
+  /* Bottom stop for card gradients */
+  --panel-fade: rgba(244, 245, 248, 0.6);
 
   /* Hairlines */
-  --line: rgba(226, 232, 245, 0.07);
-  --line-strong: rgba(226, 232, 245, 0.14);
+  --line: rgba(12, 15, 24, 0.09);
+  --line-strong: rgba(12, 15, 24, 0.17);
 
   /* Text */
-  --text: #edf1f8;
-  --text-2: #9fa9bd;
-  --text-3: #667186;
+  --text: #0b0d13;
+  --text-2: #4d525e;
+  --text-3: #828997;
 
-  /* Accent — electric blue */
-  --accent: #4d7cff;
-  --accent-bright: #7396ff;
-  --accent-soft: rgba(77, 124, 255, 0.12);
-  --accent-line: rgba(77, 124, 255, 0.34);
-  --accent-glow: rgba(77, 124, 255, 0.22);
-  --accent-ink: #030713;
+  /* Ink — the maximum-contrast fill used for primary actions.
+     Flips with the theme so the primary button is always the boldest element. */
+  --ink: #0c0e14;
+  --ink-contrast: #ffffff;
 
-  /* Support hues — used sparingly for project identity only */
-  --cyan: #38bdf8;
-  --amber: #e3b341;
-  --mint: #34d399;
+  /* Accent — electric blue, darkened here so small text stays legible */
+  --accent: #2a5fe8;
+  --accent-bright: #1d4fd8;
+  --accent-soft: rgba(42, 95, 232, 0.09);
+  --accent-line: rgba(42, 95, 232, 0.3);
+  --accent-glow: rgba(42, 95, 232, 0.28);
+
+  /* Support hues — project identity only */
+  --cyan: #0d8bc4;
+  --amber: #a67611;
+  --mint: #12996a;
+
+  /* Schematic UI strokes inside generated project visuals */
+  --pv-ink: rgba(13, 16, 24, 0.19);
+  --pv-ink-soft: rgba(13, 16, 24, 0.09);
+  --pv-screen: rgba(255, 255, 255, 0.75);
+
+  /* Ambient background wash */
+  --wash-1: rgba(42, 95, 232, 0.08);
+  --wash-2: rgba(13, 139, 196, 0.05);
+  --grid-line: rgba(12, 15, 24, 0.035);
+  --ghost-stroke: rgba(12, 15, 24, 0.07);
+
+  /* Elevation — real shadows read on a light ground */
+  --shadow-sm: 0 1px 2px rgba(14, 18, 30, 0.06);
+  --shadow-md: 0 10px 30px rgba(14, 18, 30, 0.09);
+  --shadow-lg: 0 28px 70px rgba(14, 18, 30, 0.14);
 
   /* Typography */
   --font-display: 'Space Grotesk', 'Manrope', system-ui, sans-serif;
@@ -63,11 +94,6 @@
   --dur: 0.55s;
   --dur-fast: 0.2s;
 
-  /* Elevation */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 18px 50px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 40px 90px rgba(0, 0, 0, 0.55);
-
   /* Back-compat aliases (older component CSS reads these) */
   --bg-elevated: var(--bg-soft);
   --surface-hover: var(--surface-3);
@@ -78,8 +104,56 @@
   --accent-hover: var(--accent-bright);
   --accent-muted: var(--accent-soft);
   --accent-2: var(--cyan);
-  --glass: rgba(11, 15, 22, 0.72);
+  --glass: var(--scrim);
   --glass-border: var(--line-strong);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #05070b;
+  --bg-soft: #080b11;
+  --surface: #0b0f16;
+  --surface-2: #10151e;
+  --surface-3: #161c28;
+
+  --tint: rgba(255, 255, 255, 0.022);
+  --tint-strong: rgba(255, 255, 255, 0.045);
+  --scrim: rgba(5, 7, 11, 0.72);
+  --panel-fade: rgba(11, 15, 22, 0.45);
+
+  --line: rgba(226, 232, 245, 0.07);
+  --line-strong: rgba(226, 232, 245, 0.14);
+
+  --text: #edf1f8;
+  --text-2: #9fa9bd;
+  --text-3: #667186;
+
+  --ink: #edf1f8;
+  --ink-contrast: #05070b;
+
+  --accent: #4d7cff;
+  --accent-bright: #7396ff;
+  --accent-soft: rgba(77, 124, 255, 0.12);
+  --accent-line: rgba(77, 124, 255, 0.34);
+  --accent-glow: rgba(77, 124, 255, 0.22);
+
+  --cyan: #38bdf8;
+  --amber: #e3b341;
+  --mint: #34d399;
+
+  --pv-ink: rgba(237, 241, 248, 0.13);
+  --pv-ink-soft: rgba(237, 241, 248, 0.07);
+  --pv-screen: rgba(5, 7, 11, 0.55);
+
+  --wash-1: rgba(77, 124, 255, 0.1);
+  --wash-2: rgba(56, 189, 248, 0.045);
+  --grid-line: rgba(226, 232, 245, 0.028);
+  --ghost-stroke: rgba(237, 241, 248, 0.05);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 18px 50px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 40px 90px rgba(0, 0, 0, 0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {

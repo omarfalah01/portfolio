@@ -30,7 +30,12 @@ export function Projects() {
           </h3>
           <div className="projects__grid">
             {supporting.map((project, i) => (
-              <ProjectCard key={project.id} project={project} delay={i * 80} />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={featured.length + i}
+                delay={i * 80}
+              />
             ))}
           </div>
         </div>

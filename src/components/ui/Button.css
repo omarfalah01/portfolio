@@ -39,19 +39,21 @@
 }
 
 .btn--primary {
-  --btn-bg: var(--accent);
-  --btn-fg: #fff;
-  --btn-border: var(--accent);
-  box-shadow: 0 8px 26px -12px var(--accent-glow);
+  --btn-bg: var(--ink);
+  --btn-fg: var(--ink-contrast);
+  --btn-border: var(--ink);
+  box-shadow: var(--shadow-md);
 }
 
 .btn--primary:hover {
   --btn-bg: var(--accent-bright);
   --btn-border: var(--accent-bright);
+  --btn-fg: #fff;
 }
 
 .btn--secondary {
-  --btn-bg: rgba(255, 255, 255, 0.02);
+  --btn-bg: var(--tint-strong);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn--secondary:hover {

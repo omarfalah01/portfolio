@@ -1,89 +1,52 @@
-.skills {
+.skills__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  /* Break out of the container so rows run edge to edge */
+  margin-inline: calc(var(--gutter) * -1);
+  padding-block: 0.25rem;
+}
+
+.skills__summary {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem 2.5rem;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding-top: clamp(2rem, 4vw, 2.75rem);
   border-top: 1px solid var(--line);
 }
 
-.skill-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  padding-block: clamp(1.5rem, 3vw, 2rem);
-  border-bottom: 1px solid var(--line);
-}
-
-.skill-row__head {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-}
-
-.skill-row__index {
+.skills__group-label {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  color: var(--text-3);
-}
-
-.skill-row__label {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.skill-row__caption {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
-  color: var(--text-3);
-}
-
-.skill-row__items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.skill-chip {
-  padding: 0.4rem 0.85rem;
-  font-size: 0.875rem;
   font-weight: 500;
-  color: var(--text-2);
-  background: rgba(255, 255, 255, 0.022);
-  border: 1px solid var(--line);
-  border-radius: 100px;
-  transition:
-    color var(--dur-fast) var(--ease-soft),
-    border-color var(--dur-fast) var(--ease-soft),
-    background-color var(--dur-fast) var(--ease-soft),
-    transform var(--dur-fast) var(--ease-out);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 0.6rem;
 }
 
-.skill-chip:hover {
+.skills__group-list {
+  font-size: 0.9375rem;
+  line-height: 1.6;
   color: var(--text);
-  border-color: var(--accent-line);
-  background: var(--accent-soft);
-  transform: translateY(-2px);
 }
 
-@media (min-width: 760px) {
-  .skill-row {
-    grid-template-columns: minmax(0, 230px) minmax(0, 1fr);
-    gap: 2.5rem;
-    align-items: start;
-  }
-
-  .skill-row__head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.35rem;
-    padding-top: 0.35rem;
-  }
-
-  .skill-row__index {
-    margin-bottom: 0.15rem;
+@media (min-width: 560px) {
+  .skills__summary {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .skill-chip:hover {
-    transform: none;
+@media (min-width: 700px) {
+  .skills__rows {
+    gap: 0.75rem;
+  }
+}
+
+/* Six categories land as a clean 3x2 block */
+@media (min-width: 940px) {
+  .skills__summary {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

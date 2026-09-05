@@ -7,7 +7,7 @@
   font-weight: 500;
   letter-spacing: 0.01em;
   color: var(--text-2);
-  background: rgba(255, 255, 255, 0.025);
+  background: var(--tint);
   border: 1px solid var(--line);
   border-radius: 6px;
   white-space: nowrap;

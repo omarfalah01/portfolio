@@ -1,0 +1,130 @@
+.marquee {
+  position: relative;
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background: var(--tint);
+  padding-block: 0.9rem;
+  /* Fade the strip into the page at both edges */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll var(--marquee-duration, 42s) linear infinite;
+  will-change: transform;
+}
+
+.marquee__track--reverse {
+  animation-direction: reverse;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee__group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.marquee__group li {
+  display: flex;
+  align-items: center;
+}
+
+.marquee__item {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-2);
+  white-space: nowrap;
+  transition: color var(--dur-fast) var(--ease-soft);
+}
+
+.marquee__group li:hover .marquee__item {
+  color: var(--text);
+}
+
+.marquee__sep {
+  padding-inline: clamp(1.25rem, 3vw, 2.25rem);
+  font-size: 0.7rem;
+  color: var(--accent);
+  opacity: 0.5;
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none;
+    will-change: auto;
+  }
+
+  /* Without motion the duplicate group is pure noise */
+  .marquee__group[aria-hidden='true'] {
+    display: none;
+  }
+
+  .marquee {
+    -webkit-mask-image: linear-gradient(to right, #000 88%, transparent);
+    mask-image: linear-gradient(to right, #000 88%, transparent);
+  }
+}
+
+/* ---------- Pill variant (used by the tech stack rows) ---------- */
+
+.marquee--pill {
+  border-block: 0;
+  background: none;
+  padding-block: 0;
+}
+
+.marquee--pill .marquee__group {
+  gap: 0.6rem;
+  padding-right: 0.6rem;
+}
+
+.marquee--pill .marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.15rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-2);
+  background: var(--tint);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft);
+}
+
+.marquee--pill li:hover .marquee__item {
+  color: var(--text);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+
+.marquee__dot {
+  width: 5px;
+  height: 5px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.7;
+}
+
+.marquee--pill li:hover .marquee__dot {
+  opacity: 1;
+}

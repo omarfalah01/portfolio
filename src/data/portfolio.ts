@@ -180,6 +180,25 @@ export const skillCategories: SkillCategory[] = [
   },
 ]
 
+/** Flat stack list for the hero ticker — real tools only, ordered for rhythm. */
+export const marqueeTech = [
+  'React',
+  'React Native',
+  'TypeScript',
+  'Flutter',
+  'Node.js',
+  'PostgreSQL',
+  'Python',
+  'Flask',
+  'Prisma',
+  'Supabase',
+  'SQLite',
+  'REST APIs',
+  'Electron',
+  'Railway',
+  'CCNA',
+] as const
+
 export const projects: Project[] = [
   {
     id: 'bijare',

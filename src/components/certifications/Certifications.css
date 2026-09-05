@@ -12,7 +12,7 @@
   border-radius: var(--radius-lg);
   background:
     radial-gradient(ellipse 80% 60% at 0% 0%, var(--accent-soft), transparent 60%),
-    linear-gradient(180deg, var(--surface), rgba(11, 15, 22, 0.4));
+    linear-gradient(180deg, var(--surface), var(--panel-fade));
   transition: border-color var(--dur-fast) var(--ease-soft);
 }
 
@@ -83,7 +83,7 @@
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   color: var(--text-2);
-  background: rgba(255, 255, 255, 0.025);
+  background: var(--tint);
   border: 1px solid var(--line);
   border-radius: 6px;
 }

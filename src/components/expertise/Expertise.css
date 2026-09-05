@@ -64,7 +64,7 @@
 
 .ex-card:hover .ex-card__icon {
   color: var(--accent-bright);
-  background: rgba(77, 124, 255, 0.18);
+  background: var(--accent-soft);
   transform: translateY(-2px);
 }
 

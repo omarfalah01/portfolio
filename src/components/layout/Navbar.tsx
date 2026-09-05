@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { siteConfig } from '../../config/site'
 import { navLinks } from '../../data/portfolio'
 import { useActiveSection } from '../../hooks/useActiveSection'
+import { ThemeToggle } from '../ui/ThemeToggle'
 import './Navbar.css'
 
 /** Stable module-level array — used as an effect dependency in useActiveSection. */
@@ -78,6 +79,8 @@ export function Navbar() {
         </nav>
 
         <div className="nav__end">
+          <ThemeToggle />
+
           <a className="nav__cta" href={resolveHref('#contact')}>
             Let&rsquo;s work together
           </a>

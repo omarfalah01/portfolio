@@ -94,11 +94,16 @@ export function Contact() {
 
   return (
     <section id="contact" className="contact section" aria-labelledby="contact-title">
-      <div className="container--wide">
+      <div className="section__inner container--wide">
+        <span className="section__ghost" aria-hidden="true">
+          07
+        </span>
+
         <div ref={head.ref} className={`contact__head ${head.className}`} style={head.style}>
           <p className="section__eyebrow">
-            <span className="section__index">07</span>
-            <span>Contact</span>
+            <span className="section__index">[07]</span>
+            <span className="section__rule" aria-hidden="true" />
+            <span className="section__label">Contact</span>
           </p>
 
           <h2 id="contact-title" className="contact__title">
@@ -106,6 +111,11 @@ export function Contact() {
           </h2>
 
           <p className="contact__lead">{contact.lead}</p>
+
+          <p className="contact__prompt">
+            <span className="contact__prompt-sign">$</span>
+            mail -s &quot;new project&quot;
+          </p>
 
           <div className="contact__actions">
             <a className="contact__cta" href={`mailto:${siteConfig.email}`}>

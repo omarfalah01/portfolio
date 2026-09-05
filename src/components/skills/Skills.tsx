@@ -1,33 +1,19 @@
-import { skillCategories, type SkillCategory } from '../../data/portfolio'
+import { skillCategories } from '../../data/portfolio'
 import { Section } from '../ui/Section'
+import { Marquee } from '../ui/Marquee'
 import { useReveal } from '../../hooks/useReveal'
 import './Skills.css'
 
-function SkillRow({ category, index, delay }: { category: SkillCategory; index: number; delay: number }) {
-  const reveal = useReveal<HTMLDivElement>(delay)
-
-  return (
-    <div ref={reveal.ref} className={`skill-row ${reveal.className}`} style={reveal.style}>
-      <div className="skill-row__head">
-        <span className="skill-row__index" aria-hidden="true">
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        <h3 className="skill-row__label">{category.label}</h3>
-        <p className="skill-row__caption">{category.caption}</p>
-      </div>
-
-      <ul className="skill-row__items">
-        {category.skills.map((skill) => (
-          <li key={skill} className="skill-chip">
-            {skill}
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
+/** Every technology, split into three drifting rows. */
+const ROW_COUNT = 3
+const allSkills = skillCategories.flatMap((category) => category.skills)
+const rows = Array.from({ length: ROW_COUNT }, (_, i) =>
+  allSkills.filter((_, index) => index % ROW_COUNT === i),
+)
 
 export function Skills() {
+  const summary = useReveal<HTMLDivElement>(120)
+
   return (
     <Section
       id="skills"
@@ -37,9 +23,28 @@ export function Skills() {
       lead="Tools I use in real projects — not a list of everything I have read about."
       wide
     >
-      <div className="skills">
-        {skillCategories.map((category, i) => (
-          <SkillRow key={category.id} category={category} index={i} delay={i * 50} />
+      <div className="skills__rows">
+        {rows.map((row, i) => (
+          <Marquee
+            key={i}
+            items={row}
+            variant="pill"
+            reverse={i % 2 === 1}
+            duration={38 + i * 7}
+          />
+        ))}
+      </div>
+
+      <div
+        ref={summary.ref}
+        className={`skills__summary ${summary.className}`}
+        style={summary.style}
+      >
+        {skillCategories.map((category) => (
+          <div className="skills__group" key={category.id}>
+            <h3 className="skills__group-label">{category.label}</h3>
+            <p className="skills__group-list">{category.skills.join(' · ')}</p>
+          </div>
         ))}
       </div>
     </Section>

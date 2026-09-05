@@ -12,7 +12,7 @@
 }
 
 .nav--solid {
-  background: rgba(5, 7, 11, 0.72);
+  background: var(--scrim);
   backdrop-filter: blur(14px) saturate(150%);
   -webkit-backdrop-filter: blur(14px) saturate(150%);
   border-bottom-color: var(--line);
@@ -52,7 +52,7 @@
 }
 
 .nav__brand:hover .nav__mark {
-  background: rgba(77, 124, 255, 0.2);
+  background: var(--accent-soft);
 }
 
 .nav__brand-text {
@@ -88,7 +88,8 @@
   padding: 0.25rem;
   border: 1px solid var(--line);
   border-radius: 100px;
-  background: rgba(255, 255, 255, 0.015);
+  background: var(--tint-strong);
+  box-shadow: var(--shadow-sm);
 }
 
 .nav__link {
@@ -109,7 +110,8 @@
 
 .nav__link.is-active {
   color: var(--text);
-  background: var(--surface-2);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
 }
 
 /* ---------- End actions ---------- */
@@ -123,20 +125,24 @@
 
 .nav__cta {
   display: none;
-  padding: 0.55rem 1.1rem;
+  padding: 0.6rem 1.2rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--text);
-  border: 1px solid var(--line-strong);
+  color: var(--ink-contrast);
+  background: var(--ink);
+  border: 1px solid var(--ink);
   border-radius: 100px;
+  box-shadow: var(--shadow-sm);
   transition:
     border-color var(--dur-fast) var(--ease-soft),
-    background-color var(--dur-fast) var(--ease-soft);
+    background-color var(--dur-fast) var(--ease-soft),
+    color var(--dur-fast) var(--ease-soft);
 }
 
 .nav__cta:hover {
-  border-color: var(--accent-line);
-  background: var(--accent-soft);
+  background: var(--accent-bright);
+  border-color: var(--accent-bright);
+  color: #fff;
 }
 
 .nav__toggle {

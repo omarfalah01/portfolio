@@ -42,7 +42,7 @@
   font-size: 0.6875rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--project-accent, var(--accent));
+  color: var(--project-ink, var(--accent));
   margin-bottom: 1rem;
 }
 
@@ -90,7 +90,7 @@
 }
 
 .case__code:hover {
-  border-color: var(--project-accent, var(--accent));
+  border-color: var(--project-ink, var(--accent));
 }
 
 .case__private {
@@ -130,7 +130,7 @@
   padding: 1.5rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.015);
+  background: var(--tint);
 }
 
 .case__meta dt {
@@ -192,7 +192,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--project-accent, var(--accent));
+  background: var(--project-ink, var(--accent));
 }
 
 .case__grid-list {
@@ -207,7 +207,7 @@
   color: var(--text-2);
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.015);
+  background: var(--tint);
 }
 
 .case__shots {

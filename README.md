@@ -60,17 +60,30 @@ src/
     hero/           Hero + generated architecture panel
     about/ expertise/ skills/ experience/ certifications/ contact/
     projects/       Projects, FeaturedProject, ProjectCard, ProjectVisual
-    ui/             Section, Button, Badge  (shared primitives)
+    ui/             Section, Button, Badge, Marquee  (shared primitives)
   hooks/            useInView, useReveal, useActiveSection, useParallax, useReducedMotion
   pages/            HomePage, CaseStudyPage
   styles/           tokens.css (design tokens), global.css (base + section rhythm)
 ```
 
-## Design
+Section numbering lives in one place: pass `index` to `Section` and it renders both the
+`[04]` eyebrow and the oversized ghost numeral behind the heading.
 
-Dark near-black canvas, one electric-blue accent (`--accent`), Space Grotesk / Manrope /
-JetBrains Mono. All colour, spacing, type and motion values are tokens in `src/styles/tokens.css` —
-change the accent there and it propagates site-wide.
+## Design & theming
+
+Two themes, both driven entirely by `src/styles/tokens.css`: `:root` holds the light palette
+(the default) and `:root[data-theme='dark']` overrides it. Components reference only semantic
+tokens — `--surface`, `--tint`, `--ink`, `--pv-ink` — so neither theme needs component changes.
+
+- `--ink` / `--ink-contrast` are the max-contrast pair used for primary buttons. They flip with
+  the theme, so the primary CTA is a black pill on light and a white pill on dark.
+- Per-project accents come from `portfolio.ts` as raw hex, which can be too pale for text on a
+  light ground. Text and small marks read `--project-ink` instead — a darkened mix defined in
+  `global.css` — while fills and borders keep the raw accent.
+- A small inline script in `index.html` applies the saved theme before first paint, so there is
+  no flash. `useTheme` only mirrors and updates the `data-theme` attribute it set.
+
+Type is Space Grotesk / Manrope / JetBrains Mono.
 
 ## Motion & accessibility
 
