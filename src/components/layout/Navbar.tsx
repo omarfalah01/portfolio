@@ -47,6 +47,10 @@ export function Navbar() {
 
   return (
     <header className={`nav${scrolled || open ? ' nav--solid' : ''}`}>
+      {/* The blur lives on its own layer: backdrop-filter on .nav itself would
+          make it the containing block for the fixed mobile panel below. */}
+      <span className="nav__backdrop" aria-hidden="true" />
+
       <div className="nav__inner container--wide">
         <Link to="/" className="nav__brand" aria-label={`${siteConfig.fullName} — home`}>
           <span className="nav__mark" aria-hidden="true">
